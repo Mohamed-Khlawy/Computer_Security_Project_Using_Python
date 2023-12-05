@@ -47,8 +47,8 @@ This Python project provides a graphical user interface (GUI) for three encrypti
 
 ## Team Members
 
-Mohamed Abd Elrahman Elkhlawy
+Mohamed Abd Elrahman Elkhlawy => https://github.com/Mohamed-Khlawy
 
-Soha Gamal Eldein Ahmed
+Soha Gamal Eldein Ahmed => https://github.com/S0haGamal
 
 ### Feel free to contribute, report issues, or suggest improvements. Happy encrypting!
