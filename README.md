@@ -2,28 +2,28 @@
 
 This Python project provides a graphical user interface (GUI) for three encryption algorithms: DES (Data Encryption Standard), Diffie-Hellman, and SHA-1 (Secure Hash Algorithm 1). Users can choose an algorithm, input parameters through a dedicated GUI, or load parameters from a text file for quick setup.
 
-# Features
+## Features
 
-## DES Algorithm:
+### DES Algorithm:
 
 1) Customize key, plaintext, and other parameters.
 
 2) Load parameters from a text file.
 
-## Diffie-Hellman Algorithm:
+### Diffie-Hellman Algorithm:
 
 1) Set prime number (P), generator (G), private key for Alice (Private 1), and private key for Bob (Private 2).
 
 2) Load parameters from a text file.
 
-## SHA-1 Algorithm:
+### SHA-1 Algorithm:
 
 1) Input a message for hash calculation.
 
 2) Load messages from a text file.
 
 
-# How to Use
+## How to Use
 
 1) Clone the repository: git clone https://github.com/Mohamed-Khlawy/Security_Project_Using_Python.git
 
@@ -35,7 +35,7 @@ This Python project provides a graphical user interface (GUI) for three encrypti
 
 5) View the result in a separate GUI.
 
-# File Structure
+## File Structure
 
 1) Main Project.py: Main script to run the application.
 
@@ -45,10 +45,10 @@ This Python project provides a graphical user interface (GUI) for three encrypti
 
 4) SHA1.py: SHA-1 encryption algorithm implementation.
 
-# Team Members
+## Team Members
 
 Mohamed Abd Elrahman Elkhlawy
 
 Soha Gamal Eldein Ahmed
 
-## Feel free to contribute, report issues, or suggest improvements. Happy encrypting!
+### Feel free to contribute, report issues, or suggest improvements. Happy encrypting!
