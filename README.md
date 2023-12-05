@@ -1,4 +1,4 @@
-# Project_Test-1
+# Security Project Using Python
 
 This Python project provides a graphical user interface (GUI) for three encryption algorithms: DES (Data Encryption Standard), Diffie-Hellman, and SHA-1 (Secure Hash Algorithm 1). Users can choose an algorithm, input parameters through a dedicated GUI, or load parameters from a text file for quick setup.
 
