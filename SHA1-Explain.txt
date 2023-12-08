@@ -1,0 +1,74 @@
+for i in range(len(message)):
+        bytes+='{0:08b}'.format(ord(message[i]))
+=> to convert the main message to bits
+--------------------------------------------------------------------------
+while len(padding_bits) % 512 != 448:
+        padding_bits += "0"
+=> to append zeros until the length equal to 448
+--------------------------------------------------------------------------
+padding_bits += '{0:064b}'.format(len(bits)-1)
+=> to append the length of the message after convert its size to 64-bit
+--------------------------------------------------------------------------
+def split_into_chunks(sequence, chunk_size):
+        return [sequence[i:i+chunk_size] for i in range(0, len(sequence), chunk_size)]
+=> to split any sequence into chunks with size based on the second parameter
+--------------------------------------------------------------------------
+def circular_left_shift(bits, shift_value):
+        return ((bits << shift_value) | (bits >> (32 - shift_value))) & 0xffffffff
+=> to apply the left shift on the first parameter with a shift value based on second parameter
+--------------------------------------------------------------------------
+for chunk in split_into_chunks(padding_bits, 512):
+=> to split the main message to parts each of 512 size
+--------------------------------------------------------------------------
+words = split_into_chunks(chunk, 32)
+=> to split each part of size 512 to parts each of size 32
+ --------------------------------------------------------------------------
+for n in range(0, 16):
+            w[n] = int(words[n], 2)
+=> to create the first 16 words
+--------------------------------------------------------------------------
+for i in range(16, 80):
+            w[i] = circular_left_shift((w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16]), 1)
+=> to create the other words using the equation of SHA1
+--------------------------------------------------------------------------
+a = h0
+b = h1
+c = h2
+d = h3
+e = h4
+=> to assign new variables to each of the seed values
+--------------------------------------------------------------------------
+for i in range(0, 80):
+            if 0 <= i <= 19:
+                f = (b & c) | ((~b) & d)
+                k = 0x5A827999
+            elif 20 <= i <= 39:
+                f = b ^ c ^ d
+                k = 0x6ED9EBA1
+            elif 40 <= i <= 59:
+                f = (b & c) | (b & d) | (c & d) 
+                k = 0x8F1BBCDC
+            elif 60 <= i <= 79:
+                f = b ^ c ^ d
+                k = 0xCA62C1D6
+
+            temp = circular_left_shift(a, 5) + f + e + k + w[i] & 0xffffffff
+            e = d
+            d = c
+            c = circular_left_shift(b, 30)
+            b = a
+            a = temp
+=> divide the message into 4 groups each of size 20 words, 
+	then apply function for each group,
+	then compute the temp variable for each group,
+	then swap content ==> (E = D , D = C , C = B (rotate 30 time) , B = A , A = Temp)
+--------------------------------------------------------------------------
+h0 = h0 + a & 0xffffffff
+h1 = h1 + b & 0xffffffff
+h2 = h2 + c & 0xffffffff
+h3 = h3 + d & 0xffffffff
+h4 = h4 + e & 0xffffffff
+=> to compute the new values for the seed values
+--------------------------------------------------------------------------
+return '%08x%08x%08x%08x%08x' % (h0, h1, h2, h3, h4)
+=> to compute the hash value and return it

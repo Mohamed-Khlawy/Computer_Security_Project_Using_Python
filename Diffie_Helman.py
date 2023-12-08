@@ -1,7 +1,5 @@
-# Code Link: https://www.geeksforgeeks.org/implementation-diffie-hellman-algorithm/
-#----------------------------------------------------------------------------------
-
 def Diffie_Helman_algorithm(public1, public2, private1, private2):
+	
 	def prime_checker(p):
 		# Checks If the number entered is a Prime Number or not
 		if p < 1:
@@ -29,43 +27,20 @@ def Diffie_Helman_algorithm(public1, public2, private1, private2):
 	l = []
 
 	P = public1
+
 	if prime_checker(P) == -1:
 		raise ValueError("Error: P Is Not Prime!")
-	"""
-	while 1:
-		P = int(input("Enter P : "))
-		if prime_checker(P) == -1:
-			print("Number Is Not Prime, Please Enter Again!")
-			continue
-		break
-	"""
 
 	G = public2
+
 	if primitive_check(G, P, l) == -1:
 		raise ValueError("Error: G is not a primitive root modulo P!")
-	"""
-	while 1:
-		G = int(input(f"Enter The Primitive Root Of {P} : "))
-		if primitive_check(G, P, l) == -1:
-			print(f"Number Is Not A Primitive Root Of {P}, Please Try Again!")
-			continue
-		break
-	"""
 
 	# Private Keys
 	x1, x2 = private1, private2
 	if x1 >= P or x2 >= P:
 			raise ValueError("Error: Private Key Of Both The Users Should Be Less Than P!")
-	"""
-	x1, x2 = int(input("Enter The Private Key Of User 1 : ")), int(
-		input("Enter The Private Key Of User 2 : "))
-	while 1:
-		if x1 >= P or x2 >= P:
-			print(f"Private Key Of Both The Users Should Be Less Than {P}!")
-			continue
-		break
-	"""
-
+	
 	# Calculate Public Keys
 	y1, y2 = pow(G, x1) % P, pow(G, x2) % P
 

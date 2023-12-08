@@ -40,6 +40,7 @@ def open_calculation_window(algorithm):
     canvas1.create_image(170, 165, image=img1)
     # calculation_window.mainloop()
 
+    # To read file and store its values in each line in a list, and retutn it
     def load_file_content(filename, entries):
         try:
             with open(filename, 'r') as file:
@@ -54,52 +55,78 @@ def open_calculation_window(algorithm):
         except FileNotFoundError:
             print(f"File not found: {filename}")
 
-    #file_lines = load_file_content(file_name, entries)
 
+    # If the user choosed the Diffie_Helman algorithm
     if algorithm == "Diffie_Helman":
+        # Load the Diffie_Helman inputs txt file and return its values
         file_lines = load_file_content(file_name_Helman, entries)
 
+        # Loop through the parameter names given in the (label_names_Helman),
+        # and the list returned from reading the algorithm inputs 
         for name, line in zip(label_names_Helman, file_lines):
+            # Create a new label and pach it onto the canvas
             label = tk.Label(calculation_window, text=f"{name} :")
             label.pack()
             labels.append(label)
 
+            # Create a new entry with the specified value for this parameter 
+            # in the algorithm inputs file and pack it onto the canvas
             entry = tk.Entry(calculation_window)
             entry.insert(0, line.strip())  # Strip to remove newline characters
             entry.pack()
             entries.append(entry)
+
+            # If we want to create a new entry without reading the input from file
             # entry = tk.Entry(calculation_window)
             # entry.pack()
             # entries.append(entry)
 
+    # If the user choosed the SHA-1 algorithm
     elif algorithm == "SHA-1":
+        # Load the SHA-1 inputs txt file and return its values
         file_lines = load_file_content(file_name_SHA1, entries)
         
+        # Loop through the parameter names given in the (label_names_SHA1),
+        # and the list returned from reading the algorithm inputs
         for name, line in zip(label_names_SHA1, file_lines):
+            # Create a new label and pach it onto the canvas
             label = tk.Label(calculation_window, text=f"{name} :")
             label.pack()
             labels.append(label)
 
+            # Create a new entry with the specified value for this parameter 
+            # in the algorithm inputs file and pack it onto the canvas
             entry = tk.Entry(calculation_window)
             entry.insert(0, line.strip())  # Strip to remove newline characters
             entry.pack()
             entries.append(entry)
+
+            # If we want to create a new entry without reading the input from file
             # entry = tk.Entry(calculation_window)
             # entry.pack()
             # entries.append(entry)
 
+    # If the user choosed the DES algorithm
     elif algorithm == "DES":
+        # Load the DES inputs txt file and return its values
         file_lines = load_file_content(file_name_DES, entries)
         
+        # Loop through the parameter names given in the (label_names_DES),
+        # and the list returned from reading the algorithm inputs
         for name, line in zip(label_names_DES, file_lines):
+            # Create a new label and pach it onto the canvas
             label = tk.Label(calculation_window, text=f"{name} :")
             label.pack()
             labels.append(label)
 
+            # Create a new entry with the specified value for this parameter 
+            # in the algorithm inputs file and pack it onto the canvas
             entry = tk.Entry(calculation_window)
             entry.insert(0, line.strip())  # Strip to remove newline characters
             entry.pack()
             entries.append(entry)
+
+            # If we want to create a new entry without reading the input from file
             # entry = tk.Entry(calculation_window)
             # entry.pack()
             # entries.append(entry)
@@ -115,7 +142,7 @@ def open_calculation_window(algorithm):
            
             result = None
             if algorithm == "Diffie_Helman":
-                
+                # Convert the parameters to int to be suitable for the algorithm
                 parameters = [int(entry.get()) for entry in entries]   #===========================> changed
                 result = Diffie_Helman.Diffie_Helman_algorithm(*parameters)
                 
@@ -140,6 +167,7 @@ def open_calculation_window(algorithm):
                 else:
                     result_label = tk.Label(result_window,font=10, text=f"Keys Have Not Been Exchanged Successfully")
                     result_label.pack()
+            
             elif algorithm == "DES":
                 parameters = [entry.get() for entry in entries]
                 result = DES.DES_algorithm(*parameters)
@@ -154,6 +182,7 @@ def open_calculation_window(algorithm):
                     if i == 1:
                         result_label = tk.Label(result_window,font=10,bg="light green", text=f"Plaintext After Description  =>  {element}")
                     result_label.pack()
+            
             elif algorithm == "SHA-1":
                 parameters = [entry.get() for entry in entries]
                 result =SHA1.SHA_1_algorithm(*parameters)
@@ -161,12 +190,6 @@ def open_calculation_window(algorithm):
                 result_window.title("SHA-1_Result")
                 result_label = tk.Label(result_window,font =10,bg="light blue", text=f"Hash Value  =>  {result}")
                 result_label.pack()
-            """
-            result_window = tk.Toplevel(root)
-            result_window.title("Result")
-            result_label = tk.Label(result_window, text=f"Result: {result}")
-            result_label.pack()
-            """
             
         except Exception as e:
             messagebox.showerror("Error", str(e))
