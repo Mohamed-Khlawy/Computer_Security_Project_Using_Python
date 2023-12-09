@@ -234,6 +234,8 @@ def DES_algorithm(user_message, user_key):
             # Swapper
             if(i != 15):
                 left, right = right, left
+
+            # Display the 16-part of the encryption process to reach the ciphertexten
             print("Round ", i + 1, " ", bin2hex(left)," ", bin2hex(right), " ", rk[i])
 
         # Combination
@@ -298,6 +300,9 @@ def DES_algorithm(user_message, user_key):
 
         # Compression of key from 56 to 48 bits
         round_key = permute(combine_str, key_comp, 48)
+
+        # Display the 16-round keys
+        print ("Round ", i + 1, " Key ", round_key, " With Length : ", len(round_key))
 
         rkb.append(round_key)
         rk.append(bin2hex(round_key))
