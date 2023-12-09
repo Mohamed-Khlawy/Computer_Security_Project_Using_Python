@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import Canvas, PhotoImage, Tk, messagebox
 import DES 
 import Diffie_Helman
-import SHA1
+import SHA1_Final
 
 
 # canvas = Canvas(window, width=600, height=600, bg="white") 
@@ -185,7 +185,7 @@ def open_calculation_window(algorithm):
             
             elif algorithm == "SHA-1":
                 parameters = [entry.get() for entry in entries]
-                result =SHA1.SHA_1_algorithm(*parameters)
+                result =SHA1_Final.SHA_1_algorithm(*parameters)
                 result_window = tk.Toplevel(root)
                 result_window.title("SHA-1_Result")
                 result_label = tk.Label(result_window,font =10,bg="light blue", text=f"Hash Value  =>  {result}")

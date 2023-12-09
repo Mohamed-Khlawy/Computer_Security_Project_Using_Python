@@ -93,4 +93,4 @@ def SHA_1_algorithm(message):
 
 # SHA_1_result = SHA_1_algorithm(message)
 
-# print (f"SHA-1 Result for message {message} is : {SHA_1_result} With Lenth = {len(SHA_1_result)}")
+# print (f"SHA-1 Result for message {message} is : {SHA_1_algorithm(message)} With Lenth = {len(SHA_1_result)}")
